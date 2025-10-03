@@ -1,17 +1,17 @@
 import React from 'react';
 import MarkdownEditor from './MarkdownEditor';
-import '../styles/styles.css';
 
-function App(){
-    return (
-      <>
-        <div className="app">  
-            <h1>Markdown Editor</h1>
-            <MarkdownEditor/>
-        </div>
-      </>
-    )
+import './styles.css';
+
+function App() {
+  // Markdown state for input content
+  const [markdown, setMarkdown] = useState('');
+
+  return (
+    <div className="app">
+      <MarkdownEditor markdown={markdown} setMarkdown={setMarkdown} />
+    </div>
+  );
 }
-
 
 export default App;
