@@ -1,15 +1,25 @@
-import React from 'react';
-import MarkdownEditor from './MarkdownEditor';
-
-import './styles.css';
+import React, { useState, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 function App() {
-  // Markdown state for input content
   const [markdown, setMarkdown] = useState('');
+  const [preview, setPreview] = useState('');
+
+  useEffect(() => {
+    setPreview(markdown);
+  }, [markdown]);
 
   return (
     <div className="app">
-      <MarkdownEditor markdown={markdown} setMarkdown={setMarkdown} />
+      <textarea
+        className="textarea"
+        value={markdown}
+        onChange={(e) => setMarkdown(e.target.value)}
+        placeholder="Type your markdown here..."
+      />
+      <div className="preview">
+        <ReactMarkdown>{preview}</ReactMarkdown>
+      </div>
     </div>
   );
 }
