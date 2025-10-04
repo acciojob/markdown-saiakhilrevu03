@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
+import '../styles/App.js';
 
 function App() {
   const [markdown, setMarkdown] = useState('');
