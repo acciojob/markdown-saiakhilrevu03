@@ -1,32 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
+import React, { useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 
-function MarkdownEditor({ markdown, setMarkdown }) {
-  const [previewContent, setPreviewContent] = useState('');
+function MarkdownEditor() {
+  const [markdown, setMarkdown] = useState("");   // State for input
+  const [preview, setPreview] = useState("");     // State for live preview
 
-  // Update preview content whenever markdown changes
+  // Update preview whenever markdown input changes
   useEffect(() => {
-    setPreviewContent(markdown);
+    setPreview(markdown);
   }, [markdown]);
 
-  // Handler to update markdown state from textarea
-  const handleInputChange = (e) => {
+  const handleChange = (e) => {
     setMarkdown(e.target.value);
   };
 
   return (
-    <>
-      <textarea
-        className="textarea"
-        value={markdown}
-        onChange={handleInputChange}
-        placeholder="Enter Markdown text here..."
-      ></textarea>
-
-      <div className="preview">
-        <ReactMarkdown>{previewContent}</ReactMarkdown>
+    <div className="markdown-editor">
+      <div className="editor-section">
+        <h2>Markdown Input</h2>
+        <textarea
+          className="textarea"
+          value={markdown}
+          onChange={handleChange}
+          placeholder="Write your markdown here..."
+        />
       </div>
-    </>
+
+      <div className="preview-section">
+        <h2>Live Preview</h2>
+        <div className="preview">
+          <ReactMarkdown>{preview}</ReactMarkdown>
+        </div>
+      </div>
+    </div>
   );
 }
 
